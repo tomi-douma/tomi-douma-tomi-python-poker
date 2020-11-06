@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block bankroll %}
+    {{bankroll}} €
+{% endblock %}
+
+{% block body %}
+    <div id="jeu_carte" class="container">
+        <div class="row jeu_carte">
+            {% for deck in decks %}
+            <div class="col-1 mb-2" ><img src="/static/cards_deck/{{deck}}.svg"></div>
+            {% endfor %}
+        </div>
+
+        <div class="choice">
+            <h5> Choisissez les cartes que vous voulez garder dans votre main </h5>
+            <form action="/game" method="POST">
+                <div class="row">
+                    {% for hand in hands %}
+                    <div class="col-2 mb-2" ><img src="/static/cards_deck/{{hand}}.svg"> <input type="checkbox"  name="{{hand}}"> </div>
+                    {% endfor %}
+                    <div class="col-12 text-center" > <button type="submit">Tenter ma chance</button></div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

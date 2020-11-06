@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block bankroll %}
+    {{bankroll}} €
+{% endblock %}
+
+{% block body %}
+<div id="jeu_carte" class="container">
+    <div class="row jeu_carte">
+        {% for deck in decks %}
+        <div class="col-1 mb-2" ><img src="/static/cards_deck/{{deck}}.svg"></div>
+        {% endfor %}
+    </div>
+
+    <form action="/bet" method="POST">
+        <div class="row mise">
+            {% if not game_again %}
+            <div class="col" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">La banque</span>
+                    </div>
+                    <input type="text" name="bankroll" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="col" >
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">La mise</span>
+                    </div>
+                    <input type="text" name="mise" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text">€</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 text-center">
+                <button type="submit">Je bloque ma mise !</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
